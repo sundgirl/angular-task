@@ -1,0 +1,5 @@
+  <li *ngIf="todo.text.startsWith(filterText)">
+    <input type="checkbox" [(ngModel)]="todo.done">
+    <span [ngClass]="{'done-true': todo.done}">{{todo.text}}</span>
+    [<a href="#" (click)="delete(i)">remove</a>]
+  </li>
