@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ListCompComponent implements OnInit {
   @Input() todos: any[];
+  @Input() filterText: string;
   constructor() {this.todos = [
     {text:'learn angular', done:true},
     {text:'build an angular app', done:false},
@@ -14,8 +15,15 @@ export class ListCompComponent implements OnInit {
     {text:'test', done:false},
     {text:'close', done:false}
     ];
-     }
+    this.filterText = '';
+  }
 
+  delete = (index) => {
+    this.todos = this.todos.filter((element, idx) => {
+    	return idx !== index;
+    });
+  };
+  
   ngOnInit() {
   }
 
