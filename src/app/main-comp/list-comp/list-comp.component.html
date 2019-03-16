@@ -1,5 +1,10 @@
 <ul class="unstyled">
-    <ng-container *ngFor="let todo of todos; let i = index">
-    <app-item-comp>hd</app-item-comp>
-    </ng-container>
+  <ng-container *ngFor="let todo of todos; let i = index">
+  <app-item-comp 
+  *ngIf="todo.text.startsWith(filterText)" 
+  (onItemDelete)="delete($event)"
+  [text]="todo.text"
+  [done]="todo.done"
+  [index]="i">hd</app-item-comp>
+  </ng-container>
 </ul>

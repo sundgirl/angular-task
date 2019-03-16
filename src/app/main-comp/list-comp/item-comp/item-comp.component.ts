@@ -1,4 +1,5 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+
 
 @Component({
   selector: 'app-item-comp',
@@ -6,23 +7,14 @@ import { Component, OnInit, Input} from '@angular/core';
   styleUrls: ['./item-comp.component.css']
 })
 export class ItemCompComponent implements OnInit {
-  @Input() todos: any[];
-  constructor() { 
-    this.todos = [
-      {text:'learn angular', done:true},
-      {text:'build an angular app', done:false},
-      {text:'modify', done:true},
-      {text:'test', done:false},
-      {text:'close', done:false}
-      ];
-  }
-
+  @Input() done: boolean;
+  @Input() text: string;
+  @Input() index: number;
+  @Input() filterText: string;
+  @Output() onItemDelete = new EventEmitter<number>()
   ngOnInit() {
   }
-  delete = (index) => {
-      console.log(index);
-      this.todos = this.todos.filter((element, idx) => {
-      	return idx !== index;
-      });
-    };
+  emitRemove = () => {
+    this.onItemDelete.emit(this.index);
+  }
 }
